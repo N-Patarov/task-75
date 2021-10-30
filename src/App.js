@@ -2,9 +2,13 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  const [save, dontSave] = useState(true);
-  function saveLocal(note){
-    localStorage.setItem("text", document.querySelector(".textarea").value);
+  const [note, getNote] = useState("");
+  const intputText = (state) => {
+    getNote(state.target.value)
+  }
+
+  function saveLocal(){
+    localStorage.setItem("text", note)
     console.log(localStorage);
   }
   function clearText(note){
@@ -16,8 +20,7 @@ function App() {
       <div className="box">
         <div className="field">
           <div className="control">
-            <textarea className="textarea is-large" placeholder="Notes..." />
-            <script>let text = document.getElementById("textarea is-large").value</script>
+            <textarea className="textarea is-large" placeholder="Notes..." onChange={intputText} value={note} />
           </div>
         </div>
         <button className="button is-large is-primary is-active"
