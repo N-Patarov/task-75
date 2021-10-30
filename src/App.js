@@ -7,7 +7,7 @@ function App() {
     getNote(state.target.value)
   }
 
-  function saveLocal(){
+  const saveLocal = () => {
     localStorage.setItem("text", note)
     console.log(localStorage);
   }
@@ -24,7 +24,7 @@ function App() {
           </div>
         </div>
         <button className="button is-large is-primary is-active"
-        onClick={() => saveLocal()}
+        onClick={saveLocal}
         >Save</button>
         <button className="button is-large" onClick={() => clearText()}>Clear</button>
       </div>
