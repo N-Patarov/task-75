@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [note, getNote] = useState("");
@@ -7,7 +7,10 @@ function App() {
     getNote(state.target.value)
   }
 
-  const saveLocal = () => {
+  const saveLocal = () => {if(note === ""){
+    getNote(localStorage.getItem("text"))
+    }
+  
     localStorage.setItem("text", note)
     console.log(localStorage);
   }
@@ -15,6 +18,12 @@ function App() {
     document.querySelector(".textarea").value = "";
     localStorage.removeItem("text");
   }
+  useEffect(() => {
+  if(note === ""){
+    getNote(localStorage.getItem("text"))
+    }
+  })
+    
   return (
     <div className="App">
       <div className="box">
